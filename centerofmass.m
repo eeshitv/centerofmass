@@ -9,8 +9,8 @@
 A=imread('RokProj_z008_c001.tif');   %just enter the image file, make sure you enter the file is added to MATLAB's path
 BW=roipoly(A);
 BW=uint8(BW);
-AS=BW.*A;
-imshow(AS);
+ANS=BW.*A;
+imshow(ANS);
 %% This part of the code is for finding the x coordinate of the center of mass
 %ANS is the variable with the image that has been cut using roipoly
 
@@ -61,3 +61,5 @@ COM_Y=COM_Y/SUM_Y;
 imshow(ANS);
 hold on;
 plot(COM_X, COM_Y, 'r.');
+COM_X
+COM_Y
