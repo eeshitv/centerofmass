@@ -3,11 +3,35 @@
 %%The program will then ask you to select the part of the image whose
 %%center of mass is to be found. 
 
+%%
+clear all;
+res=0.2125 % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
+load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-x.mat');
+cell_number=size(data,3); % This just assigns 109 to the cel_number for the given file
+%nox_vertices=zeros(1,cell_number);
+%for i=1:cell_number,
+%    nox_vertices(i) = size(data{1,1,i},1); %this is
+%end
+%nox_vertices;
+tx = data{1,1,89}'./res
+
+%doing the same thing for y
+
+load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-y.mat'); %this loads the y 
+cell_number=size(data,3); % This just assigns 109 to the cel_number for the given file
+
+ty=data{1,1,89}'./res
+
+%now i just need to use the vertices(i already know how to access them, i
+%just have to use roipoly with vertices and i am done.
+%%
+
+
 %%THe center of mass is stored in the variables COM_X and COM_Y and an
 %%image is outputed by the program(the tiny red dot is the center of mass)
 
 A=imread('RokProj_z008_c001.tif');   %just enter the image file, make sure you enter the file is added to MATLAB's path
-BW=roipoly(A);
+BW=roipoly(A,tx,ty);
 BW=uint8(BW);
 ANS=BW.*A;
 imshow(ANS);
