@@ -39,7 +39,7 @@ COM_X=COM_X/SUM_X;
 %% This part of the code finds the y coordinate of the center of mass
 
 ytotals = sum(ANS~=0,2);
-for i=1:X_pixels,
+for i=1:500,
     if(ytotals(i)==0) ytotals(i)=ytotals(i)+1;
     end
 end
@@ -50,7 +50,7 @@ T=sum(ANS,2);
 Y=T./y_totals;
 COM_Y=0;
 SUM_Y=sum(Y);
-for j=1:X_pixels,
+for j=1:500,
     COM_Y= j*Y(j)+COM_Y;
 end
 COM_Y=COM_Y/SUM_Y;
