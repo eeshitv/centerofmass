@@ -20,6 +20,7 @@ COM=zeros(cell_number,2);
 %nox_vertices;
 A=imread('RokProj_z008_c001.tif'); 
 imshow(A);
+A=double(A);
 hold on;
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
     
@@ -37,7 +38,7 @@ ty=datay{1,1,cell_index}'./res;
 
   %just enter the image file, make sure you enter the file is added to MATLAB's path
 BW=roipoly(A,tx,ty);
-BW=uint8(BW);
+BW=double(BW);
 ANS=BW.*A;
 %imshow(ANS);
 %% This part of the code is for finding the x coordinate of the center of mass
@@ -92,8 +93,8 @@ COM(cell_index,2)=COM_Y;
 %imshow(ANS);
 %hold on;
 %tx and ty are the vertices' x and y coordinates for the cell corresponding to this loops iteration in a vertex form)
-plot(COM_X, COM_Y, 'r.');
-h = fill(tx,ty,'');
+plot(COM_X, COM_Y, '+');
+h = fill(tx,ty,'r');
 set(h,'FaceColor','None');
 %COM_X;
 %COM_Y;
