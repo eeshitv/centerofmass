@@ -5,7 +5,7 @@
 
 %%
 clear all;
-res=0.2125 % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
+res=0.106 % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-x.mat');
 datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
@@ -91,7 +91,10 @@ COM(cell_index,2)=COM_Y;
 %% the following code plots the center of mass onto the figure
 %imshow(ANS);
 %hold on;
+%tx and ty are the vertices' x and y coordinates for the cell corresponding to this loops iteration in a vertex form)
 plot(COM_X, COM_Y, 'r.');
+h = fill(tx,ty,'');
+set(h,'FaceColor','None');
 %COM_X;
 %COM_Y;
 
@@ -99,6 +102,10 @@ end
 COM
 
 %% the following code plots the center of mass onto the figure
+tx = datax{1,1,1}'./res;
+
+ty=datay{1,1,1}'./res;
 
 %plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
-%the figure.
+%the figurehelp aptch
+
