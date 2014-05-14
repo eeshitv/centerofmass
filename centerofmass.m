@@ -18,6 +18,9 @@ COM=zeros(cell_number,2);
 %    nox_vertices(i) = size(data{1,1,i},1); %this is
 %end
 %nox_vertices;
+A=imread('RokProj_z008_c001.tif'); 
+imshow(A);
+hold on;
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
     
 tx = datax{1,1,cell_index}'./res;
@@ -32,7 +35,7 @@ ty=datay{1,1,cell_index}'./res;
 %%THe center of mass is stored in the variables COM_X and COM_Y and an
 %%image is outputed by the program(the tiny red dot is the center of mass)
 
-A=imread('RokProj_z008_c001.tif');   %just enter the image file, make sure you enter the file is added to MATLAB's path
+  %just enter the image file, make sure you enter the file is added to MATLAB's path
 BW=roipoly(A,tx,ty);
 BW=uint8(BW);
 ANS=BW.*A;
@@ -88,9 +91,14 @@ COM(cell_index,2)=COM_Y;
 %% the following code plots the center of mass onto the figure
 %imshow(ANS);
 %hold on;
-%plot(COM_X, COM_Y, 'r.');
+plot(COM_X, COM_Y, 'r.');
 %COM_X;
 %COM_Y;
 
 end
 COM
+
+%% the following code plots the center of mass onto the figure
+
+%plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
+%the figure.
