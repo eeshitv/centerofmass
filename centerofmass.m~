@@ -12,17 +12,16 @@ cell_number=size(datax,3); % This just assigns 109 to the cel_number for the giv
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-y.mat'); %this loads the y 
 datay=data;
 cell_number=size(datay,3); % This just assigns 109 to the cel_number for the given file
-COM=zeros(cell_number,2);
 %nox_vertices=zeros(1,cell_number);
 %for i=1:cell_number,
 %    nox_vertices(i) = size(data{1,1,i},1); %this is
 %end
 %nox_vertices;
-for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
+for cell_index=1:cell_number,
     
-tx = datax{1,1,cell_index}'./res;
+tx = datax{1,1,cell_index}'./res
 
-ty=datay{1,1,cell_index}'./res;
+ty=datay{1,1,cell_index}'./res
 
 %now i just need to use the vertices(i already know how to access them, i
 %just have to use roipoly with vertices and i am done.
@@ -36,7 +35,7 @@ A=imread('RokProj_z008_c001.tif');   %just enter the image file, make sure you e
 BW=roipoly(A,tx,ty);
 BW=uint8(BW);
 ANS=BW.*A;
-%imshow(ANS);
+imshow(ANS);
 %% This part of the code is for finding the x coordinate of the center of mass
 %ANS is the variable with the image that has been cut using roipoly
 X_pixels=size(A,1);
@@ -82,15 +81,13 @@ end
 COM_Y=COM_Y/SUM_Y;
 
 
-COM(cell_index,1)=COM_X;
-COM(cell_index,2)=COM_Y;
 
+if(0)
 %% the following code plots the center of mass onto the figure
-%imshow(ANS);
-%hold on;
-%plot(COM_X, COM_Y, 'r.');
-%COM_X;
-%COM_Y;
-
+imshow(ANS);
+hold on;
+plot(COM_X, COM_Y, 'r.');
+COM_X;
+COM_Y;
 end
-COM
+end
