@@ -5,7 +5,7 @@
 
 %%
 clear all;
-res=0.106 % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
+res=0.106; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-x.mat');
 datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
@@ -19,6 +19,7 @@ COM=zeros(cell_number,2);
 %end
 %nox_vertices;
 A=imread('RokProj_z008_c001.tif'); 
+C=imread('CellsProj_z008_c003.tif'); 
 imshow(A);
 A=double(A);
 hold on;
@@ -41,6 +42,9 @@ BW=roipoly(A,tx,ty);
 BW=double(BW);
 ANS=BW.*A;
 %imshow(ANS);
+
+
+if 0
 %% This part of the code is for finding the x coordinate of the center of mass
 %ANS is the variable with the image that has been cut using roipoly
 X_pixels=size(A,1);
@@ -88,7 +92,14 @@ COM_Y=COM_Y/SUM_Y;
 
 COM(cell_index,1)=COM_X;
 COM(cell_index,2)=COM_Y;
+end
 
+%%HERE I ATTEMPT TO FIND THE position of the maxima of intensity
+[maxValue, linearIndexesOfMaxes] = max(ANS(:));
+
+[rowsOfMaxes colsOfMaxes] = find(ANS == maxValue)
+COM_Y=rowsOfMaxes(1);
+COM_X=colsOfMaxes(1);
 %% the following code plots the center of mass onto the figure
 %imshow(ANS);
 %hold on;
@@ -103,9 +114,6 @@ end
 COM
 
 %% the following code plots the center of mass onto the figure
-tx = datax{1,1,1}'./res;
-
-ty=datay{1,1,1}'./res;
 
 %plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
 %the figurehelp aptch
