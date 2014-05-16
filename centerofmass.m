@@ -11,7 +11,7 @@ datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-y.mat'); %this loads the y 
 datay=data;
-cell_number=size(datay,3); % This just assigns 109 to the cel_number for the given file
+cell_number=size(datay,3) % This just assigns 109 to the cel_number for the given file
 COM=zeros(cell_number,2);
 %nox_vertices=zeros(1,cell_number);
 %for i=1:cell_number,
@@ -40,9 +40,10 @@ ty=datay{1,1,cell_index}'./res;
   %just enter the image file, make sure you enter the file is added to MATLAB's path
 BW=roipoly(A,tx,ty);
 BW=double(BW);
+SE = strel('arbitrary',eye(7));
+BW = imerode(BW,SE);
 ANS=BW.*A;
 %imshow(ANS);
-
 
 if 0
 %% This part of the code is for finding the x coordinate of the center of mass
@@ -92,14 +93,15 @@ COM_Y=COM_Y/SUM_Y;
 
 COM(cell_index,1)=COM_X;
 COM(cell_index,2)=COM_Y;
-end
 
+end
 %%HERE I ATTEMPT TO FIND THE position of the maxima of intensity
 [maxValue, linearIndexesOfMaxes] = max(ANS(:));
 
-[rowsOfMaxes colsOfMaxes] = find(ANS == maxValue)
+[rowsOfMaxes colsOfMaxes] = find(ANS == maxValue);
 COM_Y=rowsOfMaxes(1);
 COM_X=colsOfMaxes(1);
+
 %% the following code plots the center of mass onto the figure
 %imshow(ANS);
 %hold on;
@@ -111,7 +113,7 @@ set(h,'FaceColor','None');
 %COM_Y;
 
 end
-COM
+
 
 %% the following code plots the center of mass onto the figure
 
