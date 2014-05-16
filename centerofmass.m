@@ -3,6 +3,8 @@
 %%The program will then ask you to select the part of the image whose
 %%center of mass is to be found. 
 
+%% The algorithm first finds the point of maximmum intensity for each cell and then normalizes the intensity of each of the pixel in the cell by dividing each pixel value with the value of the maximum intensity of a pixel in the cell(now each value lies between zero and one). Then it applies a filter that filters out the pixels with intensities less than a certain threshold(15%) and then it finds the weighted centre of mass(centre of intensity) of each of the cells. THis is the Rok Focus of the cells
+
 %%
 clear all;
 res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn
@@ -11,7 +13,7 @@ datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-y.mat'); %this loads the y 
 datay=data;
-cell_number=size(datay,3) % This just assigns 109 to the cel_number for the given file
+cell_number=size(datay,3); % This just assigns 109 to the cel_number for the given file
 COM=zeros(cell_number,2);
 %nox_vertices=zeros(1,cell_number);
 %for i=1:cell_number,
@@ -45,7 +47,7 @@ BW = imerode(BW,SE);
 ANS=BW.*A;
 %imshow(ANS);
 g = mat2gray(ANS);
-ANS = im2bw(g, 0.875);
+ANS = im2bw(g, 0.85);
 
 
 %% This part of the code is for finding the x coordinate of the center of mass
