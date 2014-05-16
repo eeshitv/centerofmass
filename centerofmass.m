@@ -5,7 +5,7 @@
 
 %%
 clear all;
-res=0.106; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
+res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-x.mat');
 datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
@@ -40,7 +40,7 @@ ty=datay{1,1,cell_index}'./res;
   %just enter the image file, make sure you enter the file is added to MATLAB's path
 BW=roipoly(A,tx,ty);
 BW=double(BW);
-SE = strel('arbitrary',eye(7));
+SE = strel('octagon',3);
 BW = imerode(BW,SE);
 ANS=BW.*A;
 %imshow(ANS);
