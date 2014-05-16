@@ -44,8 +44,10 @@ SE = strel('octagon',3);
 BW = imerode(BW,SE);
 ANS=BW.*A;
 %imshow(ANS);
+g = mat2gray(ANS);
+ANS = im2bw(g, 0.875);
 
-if 0
+
 %% This part of the code is for finding the x coordinate of the center of mass
 %ANS is the variable with the image that has been cut using roipoly
 X_pixels=size(A,1);
@@ -94,14 +96,14 @@ COM_Y=COM_Y/SUM_Y;
 COM(cell_index,1)=COM_X;
 COM(cell_index,2)=COM_Y;
 
-end
+if 0
 %%HERE I ATTEMPT TO FIND THE position of the maxima of intensity
 [maxValue, linearIndexesOfMaxes] = max(ANS(:));
 
 [rowsOfMaxes colsOfMaxes] = find(ANS == maxValue);
 COM_Y=rowsOfMaxes(1);
 COM_X=colsOfMaxes(1);
-
+end
 %% the following code plots the center of mass onto the figure
 %imshow(ANS);
 %hold on;
