@@ -5,13 +5,13 @@
 
 %%
 clear all;
-res=0.106 % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
+res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-x.mat');
 datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-y.mat'); %this loads the y 
 datay=data;
-cell_number=size(datay,3); % This just assigns 109 to the cel_number for the given file
+cell_number=size(datay,3) % This just assigns 109 to the cel_number for the given file
 COM=zeros(cell_number,2);
 %nox_vertices=zeros(1,cell_number);
 %for i=1:cell_number,
@@ -19,6 +19,7 @@ COM=zeros(cell_number,2);
 %end
 %nox_vertices;
 A=imread('RokProj_z008_c001.tif'); 
+C=imread('CellsProj_z008_c003.tif'); 
 imshow(A);
 A=double(A);
 hold on;
@@ -39,8 +40,14 @@ ty=datay{1,1,cell_index}'./res;
   %just enter the image file, make sure you enter the file is added to MATLAB's path
 BW=roipoly(A,tx,ty);
 BW=double(BW);
+SE = strel('octagon',3);
+BW = imerode(BW,SE);
 ANS=BW.*A;
 %imshow(ANS);
+g = mat2gray(ANS);
+ANS = im2bw(g, 0.875);
+
+
 %% This part of the code is for finding the x coordinate of the center of mass
 %ANS is the variable with the image that has been cut using roipoly
 X_pixels=size(A,1);
@@ -89,6 +96,14 @@ COM_Y=COM_Y/SUM_Y;
 COM(cell_index,1)=COM_X;
 COM(cell_index,2)=COM_Y;
 
+if 0
+%%HERE I ATTEMPT TO FIND THE position of the maxima of intensity
+[maxValue, linearIndexesOfMaxes] = max(ANS(:));
+
+[rowsOfMaxes colsOfMaxes] = find(ANS == maxValue);
+COM_Y=rowsOfMaxes(1);
+COM_X=colsOfMaxes(1);
+end
 %% the following code plots the center of mass onto the figure
 %imshow(ANS);
 %hold on;
@@ -100,12 +115,9 @@ set(h,'FaceColor','None');
 %COM_Y;
 
 end
-COM
+
 
 %% the following code plots the center of mass onto the figure
-tx = datax{1,1,1}'./res;
-
-ty=datay{1,1,1}'./res;
 
 %plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
 %the figurehelp aptch
