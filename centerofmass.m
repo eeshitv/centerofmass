@@ -5,7 +5,7 @@
 
 %%
 clear all;
-res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel
+res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn
 load('/Users/eesh/centerofmass/Membranes--vertices--Vertex-x.mat');
 datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
