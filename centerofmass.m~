@@ -171,30 +171,37 @@ end
 
 %%LEGEND CODE
 
-    plot(0, 0, 'yx');
+    plot(COM_X, COM_Y, 'yx');
     legend('yx','0.5')
 
 
-    plot(0, 0, 'mx');
+    plot(COM_X, COM_Y, 'mx');
     legend('0.6')
 
 
-    plot(0, 0, 'cx');
+    plot(COM_X, COM_Y, 'cx');
     legend('0.7')
 
 
-    plot(0, 0, 'rx');
+if(threshold==0.8),
+    plot(COM_X, COM_Y, 'rx');
     legend('0.8')
+end
 
-    plot(0, 0, 'gx');
+if(threshold==0.85),
+    plot(COM_X, COM_Y, 'gx');
     legend('0.85')
+end
 
-    plot(0, 0, 'bx');
+if(threshold==0.9),
+    plot(COM_X, COM_Y, 'bx');
     legend('0.9')
+end
 
-    plot(0, 0, 'wx');
+if(threshold==0.95),
+    plot(COM_X, COM_Y, 'wx');
     legend('0.95')
-
+end
 
 %% the following code plots the center of mass onto the figure
 
