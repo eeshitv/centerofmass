@@ -29,7 +29,7 @@ hold on;
 
 COM_threshold = cell(cell_number,2,7);   %for thresholding, holding com for different thresholds
 
-for threshold=[0.5 0.6 0.7 0.8 0.85 0.9 0.95],
+threshold=0.85 ;
 
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
     
@@ -49,7 +49,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
 BW=roipoly(A,tx,ty);
 %BW=double(BW);
 SE = strel('octagon',3);
-BW = imerode(BW,SE);
+BW = imerode(BW,SE);    %eroding the e
 ANS=BW.*A;
 %imshow(ANS);
 g = mat2gray(ANS);
@@ -118,44 +118,8 @@ end
 %tx and ty are the vertices' x and y coordinates for the cell corresponding to this loops iteration in a vertex form)
 
 
-
-%%HERE THIS IS JUST FOR THRESHOLD TEST, REMOVE AFTER IT IS DONE
-if(threshold==0.5),
-    plot(COM_X, COM_Y, 'yx');
-    %legend('0.5')
-end
-
-if(threshold==0.6),
-    plot(COM_X, COM_Y, 'mx');
-    %legend('0.6')
-end
-
-if(threshold==0.7),
-    plot(COM_X, COM_Y, 'cx');
-    %legend('0.7')
-end
-
-if(threshold==0.8),
-    plot(COM_X, COM_Y, 'rx');
-    %legend('0.8')
-end
-
-if(threshold==0.85),
-    plot(COM_X, COM_Y, 'gx');
-    %legend('0.85')
-end
-
-if(threshold==0.9),
-    plot(COM_X, COM_Y, 'bx');
-    %legend('0.9')
-end
-
-if(threshold==0.95),
-    plot(COM_X, COM_Y, 'wx');
-    %legend('0.95')
-end
 %%
-
+plot(COM_X, COM_Y, 'rx');
 h = fill(tx,ty,'r');
 set(h,'FaceColor','None');
 COM;
@@ -163,45 +127,12 @@ COM;
 
 end
 %COM_threshold(:,:,threshold)=COM;
-end
 
 
 
 
 
-%%LEGEND CODE
 
-    plot(COM_X, COM_Y, 'yx');
-    legend('yx','0.5')
-
-
-    plot(COM_X, COM_Y, 'mx');
-    legend('0.6')
-
-
-    plot(COM_X, COM_Y, 'cx');
-    legend('0.7')
-
-
-if(threshold==0.8),
-    plot(COM_X, COM_Y, 'rx');
-    legend('0.8')
-end
-
-if(threshold==0.85),
-    plot(COM_X, COM_Y, 'gx');
-    legend('0.85')
-end
-
-if(threshold==0.9),
-    plot(COM_X, COM_Y, 'bx');
-    legend('0.9')
-end
-
-if(threshold==0.95),
-    plot(COM_X, COM_Y, 'wx');
-    legend('0.95')
-end
 
 %% the following code plots the center of mass onto the figure
 
