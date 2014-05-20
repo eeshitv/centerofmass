@@ -145,9 +145,9 @@ end
 %%And here we begin to look at the Radial intensity distribution function
 %%THIS SEGMENT converts the vertices into a format that can be used by the
 %%function that finds the intersection points
-   tx = datax{1,1,10}'./res;
+   tx = datax{1,1,80}'./res;
 
-   ty = datay{1,1,10}'./res;
+   ty = datay{1,1,80}'./res;
 
    vert_cell=size(tx,2);
    t_poly=zeros(vert_cell,2);
