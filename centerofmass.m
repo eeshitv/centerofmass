@@ -157,7 +157,7 @@ end
        t_poly(i ,2)=ty(i);
    end
 
-   t_poly
+   t_poly;
 
    
 %%THe center of mass is stored in the variables COM_X and COM_Y and an
@@ -228,46 +228,74 @@ end
     COM_Y;
     plot(COM_X, COM_Y, 'bx');
     hold on;
-    %DO NOT FORGET TO HOLD ON
+    %%DO NOT FORGET TO HOLD ON
+    
     
     %%NOW THE UNIT VECTOR PART BEGINS
+    
+    %%+0
     line=[COM_X COM_Y 0 1];
-     intersect=intersectLinePolygon(line, t_poly)
-     
+     intersect=intersectLinePolygon(line, t_poly);
      h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
     set(h,'FaceColor','None');
     h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
     set(h,'FaceColor','None');
-     %C=improfile(ANS,[COM_X intersect(1,1)],[COM_Y intersect(1,2)]);
+     %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C1=improfile(A,x,y)
      
-     
+     %%+45
     line=[COM_X COM_Y 1 1];
      intersect=intersectLinePolygon(line, t_poly);
        h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
     set(h,'FaceColor','None');
     h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
     set(h,'FaceColor','None');
+      %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C2=improfile(A,x,y)
      
-     
+         %%+90
     line=[COM_X COM_Y 1 0];
      intersect=intersectLinePolygon(line, t_poly);
        h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
     set(h,'FaceColor','None');
     h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
     set(h,'FaceColor','None');
+      %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C3=improfile(A,x,y)
      
-     
+         %%+-45
     line=[COM_X COM_Y 1 -1];
      intersect=intersectLinePolygon(line, t_poly);
      h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
     set(h,'FaceColor','None');
     h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
     set(h,'FaceColor','None');
-    
-  
+ %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C4=improfile(A,x,y)
+
    
+    %%NOW TO FIND THE AVERAGE
+    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ]
+    max_index=max(LOL);
+    %%PADDING ZEROS for finding average easily
+    C1 = vertcat(C1,zeros(max_index-size(C1,1),1))
+    C2 = vertcat(C2,zeros(max_index-size(C2,1),1)) 
+    C3 = vertcat(C3,zeros(max_index-size(C3,1),1)) 
+    C4 = vertcat(C4,zeros(max_index-size(C4,1),1)) 
     
-     
+    C=[C1 C2 C3 C4];
+    mean_C=mean(C,2);
+    k = waitforbuttonpress ;
+    hold off;
+    plot(mean_C')
 %% the following code plots the center of mass onto the figure
 
 %plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
