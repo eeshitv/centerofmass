@@ -227,42 +227,29 @@ end
     COM_X;
     COM_Y;
     plot(COM_X, COM_Y, 'bx');
-    hold on;
-    %DO NOT FORGET TO HOLD ON
     
     %%NOW THE UNIT VECTOR PART BEGINS
     line=[COM_X COM_Y 0 1];
      intersect=intersectLinePolygon(line, t_poly)
+     COM_X
      
-     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
+     line([COM_X intersect(1,1)],[COM_Y intersect(1,2)])
      %C=improfile(ANS,[COM_X intersect(1,1)],[COM_Y intersect(1,2)]);
      
      
     line=[COM_X COM_Y 1 1];
-     intersect=intersectLinePolygon(line, t_poly);
-       h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
+     intersect=intersectLinePolygon(line, t_poly)
+     
      
      
     line=[COM_X COM_Y 1 0];
      intersect=intersectLinePolygon(line, t_poly);
-       h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
+     
      
      
     line=[COM_X COM_Y 1 -1];
      intersect=intersectLinePolygon(line, t_poly);
-     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
+   
     
   
    
