@@ -42,6 +42,16 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
 
     ty = datay{1,1,cell_index}'./res;
 
+     vert_cell=size(tx,2);
+   t_poly=zeros(vert_cell,2);
+
+   for i=1:vert_cell,
+       t_poly(i ,1)=tx(i);
+       t_poly(i ,2)=ty(i);
+   end
+
+   t_poly;
+    
 %now i just need to use the vertices(i already know how to access them, i
 %just have to use roipoly with vertices and i am done.
 %%
@@ -131,10 +141,75 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
     set(h,'FaceColor','None');
     COM;
 
-
-  
-
+hold on;
+    %%DO NOT FORGET TO HOLD ON
     
+    
+    %%NOW THE UNIT VECTOR PART BEGINS
+    
+    %%+0
+    line=[COM_X COM_Y 0 1];
+     intersect=intersectLinePolygon(line, t_poly);
+     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+     %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C1=improfile(A,x,y);
+     
+     %%+45
+    line=[COM_X COM_Y 1 1];
+     intersect=intersectLinePolygon(line, t_poly);
+       h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+      %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C2=improfile(A,x,y);
+     
+         %%+90
+    line=[COM_X COM_Y 1 0];
+     intersect=intersectLinePolygon(line, t_poly);
+       h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+      %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+    y=[COM_Y intersect(1,2)];
+         C3=improfile(A,x,y);
+     
+         %%+-45
+    line=[COM_X COM_Y 1 -1];
+     intersect=intersectLinePolygon(line, t_poly);
+     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+ %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+     y=[COM_Y intersect(1,2)];
+         C4=improfile(A,x,y);
+
+   
+    %%NOW TO FIND THE AVERAGE
+    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ];
+    max_index=max(LOL);
+    %%PADDING ZEROS for finding average easily
+    C1 = vertcat(C1,NaN(max_index-size(C1,1),1));
+    C2 = vertcat(C2,NaN(max_index-size(C2,1),1)); 
+    C3 = vertcat(C3,NaN(max_index-size(C3,1),1)); 
+    C4 = vertcat(C4,NaN(max_index-size(C4,1),1));
+    %USE NaN instead of zeros
+    C=[C1 C2 C3 C4];
+    mean_C=nanmean(C,2);
+  
+    cell(cell_index).index = cell_index;
+    cell(cell_index).radial = mean_C;
     
 end
 
@@ -145,9 +220,11 @@ end
 %%And here we begin to look at the Radial intensity distribution function
 %%THIS SEGMENT converts the vertices into a format that can be used by the
 %%function that finds the intersection points
-   tx = datax{1,1,80}'./res;
 
-   ty = datay{1,1,80}'./res;
+%%100,69 example of ring
+   tx = datax{1,1,100}'./res;
+
+   ty = datay{1,1,100}'./res;
 
    vert_cell=size(tx,2);
    t_poly=zeros(vert_cell,2);
@@ -243,7 +320,7 @@ end
      %NOW TO SAVE THE INTENSITIES IN A MATRIX
      x=[COM_X intersect(1,1)];
     y=[COM_Y intersect(1,2)];
-         C1=improfile(A,x,y)
+         C1=improfile(A,x,y);
      
      %%+45
     line=[COM_X COM_Y 1 1];
@@ -255,7 +332,7 @@ end
       %NOW TO SAVE THE INTENSITIES IN A MATRIX
      x=[COM_X intersect(1,1)];
     y=[COM_Y intersect(1,2)];
-         C2=improfile(A,x,y)
+         C2=improfile(A,x,y);
      
          %%+90
     line=[COM_X COM_Y 1 0];
@@ -267,7 +344,7 @@ end
       %NOW TO SAVE THE INTENSITIES IN A MATRIX
      x=[COM_X intersect(1,1)];
     y=[COM_Y intersect(1,2)];
-         C3=improfile(A,x,y)
+         C3=improfile(A,x,y);
      
          %%+-45
     line=[COM_X COM_Y 1 -1];
@@ -278,21 +355,21 @@ end
     set(h,'FaceColor','None');
  %NOW TO SAVE THE INTENSITIES IN A MATRIX
      x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
-         C4=improfile(A,x,y)
+     y=[COM_Y intersect(1,2)];
+         C4=improfile(A,x,y);
 
    
     %%NOW TO FIND THE AVERAGE
-    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ]
+    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ];
     max_index=max(LOL);
     %%PADDING ZEROS for finding average easily
-    C1 = vertcat(C1,zeros(max_index-size(C1,1),1))
-    C2 = vertcat(C2,zeros(max_index-size(C2,1),1)) 
-    C3 = vertcat(C3,zeros(max_index-size(C3,1),1)) 
-    C4 = vertcat(C4,zeros(max_index-size(C4,1),1)) 
-    
+    C1 = vertcat(C1,NaN(max_index-size(C1,1),1));
+    C2 = vertcat(C2,NaN(max_index-size(C2,1),1)); 
+    C3 = vertcat(C3,NaN(max_index-size(C3,1),1)); 
+    C4 = vertcat(C4,NaN(max_index-size(C4,1),1));
+    %USE NaN instead of zeros
     C=[C1 C2 C3 C4];
-    mean_C=mean(C,2);
+    mean_C=nanmean(C,2);
     k = waitforbuttonpress ;
     hold off;
     plot(mean_C')
