@@ -194,8 +194,8 @@ hold on;
      x=[COM_X intersect(1,1)];
      y=[COM_Y intersect(1,2)];
          C4=improfile(A,x,y);
-
-   
+%%THIS PLOTS THE CELL NUMBER ONTO THE CELL
+  text( COM_X, COM_Y, [num2str(cell_index)],'Color', 'm');   
     %%NOW TO FIND THE AVERAGE
     LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ];
     max_index=max(LOL);
@@ -206,25 +206,48 @@ hold on;
     C4 = vertcat(C4,NaN(max_index-size(C4,1),1));
     %USE NaN instead of zeros
     C=[C1 C2 C3 C4];
-    mean_C=nanmean(C,2);
+    mean_C = nanmean(C,2);
+    stdev_C = nanstd(C',1);
   
     cell(cell_index).index = cell_index;
-    cell(cell_index).radial = mean_C;
+    cell(cell_index).mean = mean_C;
+    cell(cell_index).C = C;
+    cell(cell_index).stdev = stdev_C;
+    
     
 end
 
+
 %COM_threshold(:,:,threshold)=COM;
+k = waitforbuttonpress ;
+    hold off;
+    
+    start_cell=81;
+    end_cell=100;
+for cell_index=start_cell:end_cell%just selecting cell indices for plotting randomly
+ %%plot the shadederrorbars
+    
+    cell(cell_index).mean';
+    %plot(mean_C')
+    subplot(4,5,cell_index-start_cell+1);%subtract the first index -1 here so that the subplot input never goes above 20
+        stdevplot=cell(cell_index).stdev;
+    shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',stdevplot,'g');
+    
+
+end
 
 
+%%testing for single cell only ; dont need it now
+if 0
 %%
 %%And here we begin to look at the Radial intensity distribution function
 %%THIS SEGMENT converts the vertices into a format that can be used by the
 %%function that finds the intersection points
 
-%%100,69 example of ring
-   tx = datax{1,1,100}'./res;
+%%100,69,3 example of ring
+   tx = datax{1,1,3}'./res;
 
-   ty = datay{1,1,100}'./res;
+   ty = datay{1,1,3}'./res;
 
    vert_cell=size(tx,2);
    t_poly=zeros(vert_cell,2);
@@ -370,9 +393,18 @@ end
     %USE NaN instead of zeros
     C=[C1 C2 C3 C4];
     mean_C=nanmean(C,2);
+    stdev_C = nanstd(mean_C);
+    
+    %%plot the shadederrorbars
     k = waitforbuttonpress ;
     hold off;
-    plot(mean_C')
+    mean_C';
+    %plot(mean_C')
+    stdevplot=stdev_C*ones(1,size(mean_C',2));
+    shadedErrorBar(1:size(mean_C',2),mean_C',stdevplot,'g');
+    %subplot(10,10,cell_index);
+    
+end
 %% the following code plots the center of mass onto the figure
 
 %plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
