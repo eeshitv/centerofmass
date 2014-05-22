@@ -34,7 +34,7 @@ hold on;
 
 COM_threshold = cell(cell_number,2,7);   %for thresholding, holding com for different thresholds
 
-threshold=0.825 ;
+threshold=0.80 ;
 
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
     
@@ -147,6 +147,8 @@ hold on;
     
     %%NOW THE UNIT VECTOR PART BEGINS
     
+    cospiby8=0.92387953251;
+    sinpiby8=0.38268343236;
     %%+0
     line=[COM_X COM_Y 0 1];
      intersect=intersectLinePolygon(line, t_poly);
@@ -194,18 +196,75 @@ hold on;
      x=[COM_X intersect(1,1)];
      y=[COM_Y intersect(1,2)];
          C4=improfile(A,x,y);
+         
+         %%+22.5+45
+    line=[COM_X COM_Y sinpiby8 cospiby8];
+     intersect=intersectLinePolygon(line, t_poly);
+     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+ %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+     y=[COM_Y intersect(1,2)];
+         C5=improfile(A,x,y);
+         
+         %%22.5
+    line=[COM_X COM_Y cospiby8 sinpiby8];
+     intersect=intersectLinePolygon(line, t_poly);
+     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+ %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+     y=[COM_Y intersect(1,2)];
+         C6=improfile(A,x,y);
+         
+         %%-22.5
+    line=[COM_X COM_Y cospiby8 -sinpiby8];
+     intersect=intersectLinePolygon(line, t_poly);
+     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+ %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+     y=[COM_Y intersect(1,2)];
+         C7=improfile(A,x,y);
+         
+      %%-22.5-45
+    line=[COM_X COM_Y -cospiby8 sinpiby8];
+     intersect=intersectLinePolygon(line, t_poly);
+     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+    set(h,'FaceColor','None');
+    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+    set(h,'FaceColor','None');
+ %NOW TO SAVE THE INTENSITIES IN A MATRIX
+     x=[COM_X intersect(1,1)];
+     y=[COM_Y intersect(1,2)];
+         C8=improfile(A,x,y);
+         
+         
 %%THIS PLOTS THE CELL NUMBER ONTO THE CELL
   text( COM_X, COM_Y, [num2str(cell_index)],'Color', 'm');   
-    %%NOW TO FIND THE AVERAGE
-    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ];
+   
+  
+  
+  %%NOW TO FIND THE AVERAGE
+    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1),size(C5,1),size(C6,1),size(C7,1),size(C8,1) ];
     max_index=max(LOL);
     %%PADDING ZEROS for finding average easily
     C1 = vertcat(C1,NaN(max_index-size(C1,1),1));
     C2 = vertcat(C2,NaN(max_index-size(C2,1),1)); 
     C3 = vertcat(C3,NaN(max_index-size(C3,1),1)); 
     C4 = vertcat(C4,NaN(max_index-size(C4,1),1));
+    C5 = vertcat(C5,NaN(max_index-size(C5,1),1));
+    C6 = vertcat(C6,NaN(max_index-size(C6,1),1));
+    C7 = vertcat(C7,NaN(max_index-size(C7,1),1));
+    C8 = vertcat(C8,NaN(max_index-size(C8,1),1));
     %USE NaN instead of zeros
-    C=[C1 C2 C3 C4];
+    C=[C1 C2 C3 C4 C5 C6 C7 C8];
     mean_C = nanmean(C,2);
     stdev_C = nanstd(C',1);
   
@@ -230,181 +289,17 @@ for cell_index=start_cell:end_cell%just selecting cell indices for plotting rand
     cell(cell_index).mean';
     %plot(mean_C')
     subplot(4,5,cell_index-start_cell+1);%subtract the first index -1 here so that the subplot input never goes above 20
+   
         stdevplot=cell(cell_index).stdev;
     shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',stdevplot,'g');
-    
+     axis([0,40,0,180]);
+     title(cell(cell_index).index)
+     
 
 end
 
 
-%%testing for single cell only ; dont need it now
-if 0
-%%
-%%And here we begin to look at the Radial intensity distribution function
-%%THIS SEGMENT converts the vertices into a format that can be used by the
-%%function that finds the intersection points
 
-%%100,69,3 example of ring
-   tx = datax{1,1,3}'./res;
-
-   ty = datay{1,1,3}'./res;
-
-   vert_cell=size(tx,2);
-   t_poly=zeros(vert_cell,2);
-
-   for i=1:vert_cell,
-       t_poly(i ,1)=tx(i);
-       t_poly(i ,2)=ty(i);
-   end
-
-   t_poly;
-
-   
-%%THe center of mass is stored in the variables COM_X and COM_Y and an
-%%image is outputed by the program(the tiny red dot is the center of mass)
-
-  %just enter the image file, make sure you enter the file is added to MATLAB's path
-    
-    BW=roipoly(A,tx,ty);
-    BW=double(BW);
-    SE = strel('octagon',3);
-    BW = imerode(BW,SE);    %eroding the edges,helps while profiling too!
-    ANS=BW.*A;
-    %imshow(ANS);
-    g = mat2gray(ANS);
-    ANS = im2bw(g, threshold);
-
-%% This part of the code is for finding the x coordinate of the center of mass
-%ANS is the variable with the image that has been cut using roipoly
-    X_pixels=size(A,1);
-    Y_pixels=size(A,2);
-    xtotals = sum(ANS~=0,1);
-%the for loop just adds 1s to the places where there are zeros so there is
-%no division by zero 
-    for i=1:Y_pixels,
-        if(xtotals(i)==0) xtotals(i)=xtotals(i)+1;
-        end
-    end
-    
-    x_totals=xtotals;
-    T=sum(ANS,1);
-    X=T./x_totals;
-    COM_X=0;
-    SUM_X=sum(X);
-    
-    for j=1:Y_pixels,
-        COM_X= j*X(j)+COM_X;
-    end
-    
-    COM_X=COM_X/SUM_X;
-
-
-
-%% This part of the code finds the y coordinate of the center of mass
-
-    ytotals = sum(ANS~=0,2);
-    for i=1:X_pixels,
-        if(ytotals(i)==0) ytotals(i)=ytotals(i)+1;
-        end
-    end
-    
-    y_totals=ytotals;
-
-    T=sum(ANS,2);
-
-    Y=T./y_totals;
-    COM_Y=0;
-    SUM_Y=sum(Y);
-    for j=1:X_pixels,
-        COM_Y= j*Y(j)+COM_Y;
-    end
-    COM_Y=COM_Y/SUM_Y;
-
-
-    COM(cell_index,1)=COM_X;
-    COM(cell_index,2)=COM_Y;
-    
-    COM_X;
-    COM_Y;
-    plot(COM_X, COM_Y, 'bx');
-    hold on;
-    %%DO NOT FORGET TO HOLD ON
-    
-    
-    %%NOW THE UNIT VECTOR PART BEGINS
-    
-    %%+0
-    line=[COM_X COM_Y 0 1];
-     intersect=intersectLinePolygon(line, t_poly);
-     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
-     %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
-         C1=improfile(A,x,y);
-     
-     %%+45
-    line=[COM_X COM_Y 1 1];
-     intersect=intersectLinePolygon(line, t_poly);
-       h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
-      %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
-         C2=improfile(A,x,y);
-     
-         %%+90
-    line=[COM_X COM_Y 1 0];
-     intersect=intersectLinePolygon(line, t_poly);
-       h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
-      %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
-         C3=improfile(A,x,y);
-     
-         %%+-45
-    line=[COM_X COM_Y 1 -1];
-     intersect=intersectLinePolygon(line, t_poly);
-     h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
-    set(h,'FaceColor','None');
-    h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
-    set(h,'FaceColor','None');
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-     y=[COM_Y intersect(1,2)];
-         C4=improfile(A,x,y);
-
-   
-    %%NOW TO FIND THE AVERAGE
-    LOL=[size(C1,1),size(C2,1),size(C3,1),size(C4,1) ];
-    max_index=max(LOL);
-    %%PADDING ZEROS for finding average easily
-    C1 = vertcat(C1,NaN(max_index-size(C1,1),1));
-    C2 = vertcat(C2,NaN(max_index-size(C2,1),1)); 
-    C3 = vertcat(C3,NaN(max_index-size(C3,1),1)); 
-    C4 = vertcat(C4,NaN(max_index-size(C4,1),1));
-    %USE NaN instead of zeros
-    C=[C1 C2 C3 C4];
-    mean_C=nanmean(C,2);
-    stdev_C = nanstd(mean_C);
-    
-    %%plot the shadederrorbars
-    k = waitforbuttonpress ;
-    hold off;
-    mean_C';
-    %plot(mean_C')
-    stdevplot=stdev_C*ones(1,size(mean_C',2));
-    shadedErrorBar(1:size(mean_C',2),mean_C',stdevplot,'g');
-    %subplot(10,10,cell_index);
-    
-end
 %% the following code plots the center of mass onto the figure
 
 %plot(COM(:,1), COM(:,2), 'r.'); %this works, plots all the COMs right onto
