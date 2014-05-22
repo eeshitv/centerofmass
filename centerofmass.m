@@ -288,13 +288,14 @@ k = waitforbuttonpress ;
     
     start_cell=91;
     end_cell=100;
-for cell_index=start_cell:end_cell%just selecting cell indices for plotting randomly
+    i=1;
+for cell_index=[96 69 3 86 100 113 39 47 38 99]%just selecting cell indices for plotting randomly
  %%plot the shadederrorbars
-    
+   
     cell(cell_index).mean';
     %plot(mean_C')
     
-    subplot(2,5,cell_index-start_cell+1);%subtract the first index -1 here so that the subplot input never goes above 20
+    subplot(2,5,i);%subtract the first index -1 here so that the subplot input never goes above 20
  % imshow( cell(cell_index).ANS);
     
    %hold on;
@@ -303,7 +304,7 @@ for cell_index=start_cell:end_cell%just selecting cell indices for plotting rand
     axis([0,40,0,190]);
      title(cell(cell_index).index)
      hold on
-
+ i=i+1;
 end
 
 
@@ -445,14 +446,14 @@ end
 %COM_threshold(:,:,threshold)=COM;
 
     
-  
-for cell_index=start_cell:end_cell,%just selecting cell indices for plotting randomly
+  i=1;
+for cell_index=[96 69 3 86 100 113 39 47 38 99],%just selecting cell indices for plotting randomly
  %%plot the shadederrorbars
     
     cell(cell_index).mean';
     %plot(mean_C')
     
-    subplot(2,5,cell_index-start_cell+1);%subtract the first index -1 here so that the subplot input never goes above 20
+    subplot(2,5,i);%subtract the first index -1 here so that the subplot input never goes above 20
  % imshow( cell(cell_index).ANS);
     
    %hold on;
@@ -460,7 +461,7 @@ for cell_index=start_cell:end_cell,%just selecting cell indices for plotting ran
    shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',cell(cell_index).stdev,'r');
     axis([0,40,0,190]);
     title(cell(cell_index).index)
-     
+   i=i+1;  
 
 end
 
