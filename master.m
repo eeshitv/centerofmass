@@ -58,21 +58,14 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
     run('/Users/eesh/centerofmass_spn/radial_distribution.m');
     
     %%THIS PLOTS THE CELL NUMBER ONTO THE CELL
-  text( cell(cell_index).COM_X, cell(cell_index).COM_Y, [num2str(cell_index)],'Color', 'g');   
-    
+  text( cell(cell_index).COM_X, cell(cell_index).COM_Y, [num2str(cell_index)],'Color', 'g'); 
+     
     
 end
  cell_rok=cell;
 
 
-%%SAVING ALL THE DATA for ROK into cell_rok
-
-%%plotting myosin onto the Rok plots
-%%The mysoin_distribution is stored in a different file for sanity
-%%NOW WE PLOT MYOSIN DISTRIBUTION PLOTS IN RED
-    %%NOW THE UNIT VECTOR PART BEGINS
- A=M;
- rok=0; %for the plotting to be off   
+%%THIS FOR LOOP IS FOR STORING THE VALUES OF MYOSIN
     for cell_index=1:cell_number,
         
          tx = datax{1,1,cell_index}'./res;
@@ -94,14 +87,8 @@ end
 end
 cell_myosin=cell;
 
-%%THE PLOTS USING SUBPLOT FOR MYOSIN
-%COM_threshold(:,:,threshold)=COM;
 
-
-
-
-%%THE PLOTS USING SUBPLOT FOR ROK
-%COM_threshold(:,:,threshold)=COM;
+%%HOLD FOR PRESSING A KEY
 k = waitforbuttonpress ;
     hold off;
     
