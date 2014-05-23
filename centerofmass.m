@@ -238,7 +238,7 @@ hold on;
          C7=improfile(A,x,y);
          
       %%-22.5-45
-    line=[COM_X COM_Y -cospiby8 sinpiby8];
+    line=[COM_X COM_Y sinpiby8 -cospiby8];
      intersect=intersectLinePolygon(line, t_poly);
      h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
     set(h,'FaceColor','None');
@@ -405,7 +405,7 @@ cell_rok=cell;
          C7=improfile(A,x,y);
          
       %%-22.5-45
-    line=[COM_X COM_Y -cospiby8 sinpiby8];
+    line=[COM_X COM_Y sinpiby8 -cospiby8];
      intersect=intersectLinePolygon(line, t_poly);
      %NOW TO SAVE THE INTENSITIES IN A MATRIX
      x=[COM_X intersect(1,1)];
