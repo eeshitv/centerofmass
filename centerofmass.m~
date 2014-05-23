@@ -565,9 +565,7 @@ end
 cell_myosin=cell;
 
 
-
-%%SCRIPT TO FIND THE AVERAGE Intensity
 k = waitforbuttonpress ;
     hold off;
     
-run('/Users/eesh/centerofmass_spn/average_intensity.m');
+run(average_intensity);
