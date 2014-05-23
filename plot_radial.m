@@ -1,5 +1,5 @@
    i=1;
-for cell_index=[96 69 3 86 100 113 39 47 38 99]%just selecting cell indices for plotting randomly
+for cell_index=start_cell:end_cell%just selecting cell indices for plotting randomly
  %%plot the shadederrorbars
    
     cell(cell_index).mean';
