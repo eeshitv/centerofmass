@@ -2,120 +2,119 @@
     %%NOW THE UNIT VECTOR PART BEGINS
     
     %%+0
-    line=[COM_X COM_Y 0 1];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y 0 1];
      intersect=intersectLinePolygon(line, t_poly);
      if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
      %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+    y=[cell(cell_index).COM_Y intersect(1,2)];
          C1=improfile(A,x,y);
      
      %%+45
-    line=[COM_X COM_Y 1 1];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y 1 1];
      intersect=intersectLinePolygon(line, t_poly);
        if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
       %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+    y=[cell(cell_index).COM_Y intersect(1,2)];
          C2=improfile(A,x,y);
      
          %%+90
-    line=[COM_X COM_Y 1 0];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y 1 0];
      intersect=intersectLinePolygon(line, t_poly);
         if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
       %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-    y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+    y=[cell(cell_index).COM_Y intersect(1,2)];
          C3=improfile(A,x,y);
      
          %%+-45
-    line=[COM_X COM_Y 1 -1];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y 1 -1];
      intersect=intersectLinePolygon(line, t_poly);
       if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
  %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-     y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+     y=[cell(cell_index).COM_Y intersect(1,2)];
          C4=improfile(A,x,y);
          
          %%+22.5+45
-    line=[COM_X COM_Y sin(pi/8) cos(pi/8)];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/8) cos(pi/8)];
      intersect=intersectLinePolygon(line, t_poly);
        if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
  %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-     y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+     y=[cell(cell_index).COM_Y intersect(1,2)];
          C5=improfile(A,x,y);
          
          %%22.5
-    line=[COM_X COM_Y cos(pi/8) sin(pi/8)];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/8) sin(pi/8)];
      intersect=intersectLinePolygon(line, t_poly);
       if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
  %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-     y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+     y=[cell(cell_index).COM_Y intersect(1,2)];
          C6=improfile(A,x,y);
          
          %%-22.5
-    line=[COM_X COM_Y cos(pi/8) -sin(pi/8)];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/8) -sin(pi/8)];
      intersect=intersectLinePolygon(line, t_poly);
        if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
  %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-     y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+     y=[cell(cell_index).COM_Y intersect(1,2)];
          C7=improfile(A,x,y);
          
       %%-22.5-45
-    line=[COM_X COM_Y sin(pi/8) -cos(pi/8)];
+    line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/8) -cos(pi/8)];
      intersect=intersectLinePolygon(line, t_poly);
        if(rok),
-           h = fill([COM_X intersect(1,1)],[COM_Y intersect(1,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
            set(h,'FaceColor','None');
-           h = fill([COM_X intersect(2,1)],[COM_Y intersect(2,2)],'r');
+           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
            set(h,'FaceColor','None');
      end
  %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[COM_X intersect(1,1)];
-     y=[COM_Y intersect(1,2)];
+     x=[cell(cell_index).COM_X intersect(1,1)];
+     y=[cell(cell_index).COM_Y intersect(1,2)];
          C8=improfile(A,x,y);
          
          
-%%THIS PLOTS THE CELL NUMBER ONTO THE CELL
-  text( COM_X, COM_Y, [num2str(cell_index)],'Color', 'm');   
+
    
   
   
