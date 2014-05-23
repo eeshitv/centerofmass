@@ -9,8 +9,12 @@ for cell_index=[96 69 3 86 100 113 39 47 38 99]%just selecting cell indices for 
  % imshow( cell(cell_index).ANS);
     
    %hold on;
-  
+  if(rok)
    shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',cell(cell_index).stdev,'g');
+  end
+   if(~rok)
+   shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',cell(cell_index).stdev,'r');
+  end
     axis([0,40,0,190]);
      title(cell(cell_index).index)
      hold on
