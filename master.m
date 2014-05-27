@@ -105,8 +105,8 @@ cell_myosin=cell;
 k = waitforbuttonpress ;
     hold off;
     
-    start_cell=51;
-    end_cell=60;
+    start_cell=31;
+    end_cell=40;
     
      %%MYOSIN PLOT
  cell=cell_myosin;
