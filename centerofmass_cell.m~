@@ -78,14 +78,7 @@ cell(cell_index).ANS=uint8(cell(cell_index).ANS); %we can now use this to plot w
     end
     COM_Y=COM_Y/SUM_Y;
 
-    
-    %%TRYING THE CENTROID OF 15% MAXIMA
-    if 0
-    QWERT=regionprops(BW, 'Centroid');
-    COM_X=QWERT.Centroid(1);
-    COM_Y=QWERT.Centroid(2);
-    end
-    %%
+
     cell(cell_index).COM_X=COM_X;
     cell(cell_index).COM_Y=COM_Y;
 

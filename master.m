@@ -30,6 +30,7 @@ M=imread('MyosinProj_z008_c003.tif');
 C=imread('CellsProj_z008_c003.tif'); 
 imshow(A);
 A=double(A);
+M=double(M);
 %%REMEMBER: IF YOU to output a grayscale image you must convert it to
 %%uint8(use imshow(A) , after doing double(A), and it wont show output,
 %%nothing wrong with the matrix, but it just wont show output
@@ -37,14 +38,17 @@ hold on;
 rok=1;
 
 COM_threshold = cell(cell_number,2,7);   %for thresholding, holding com for different thresholds
-
-threshold=0.80 ;
+A_hold=A;
+threshold=0.85 ;
 
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
     
    %%SCRIPT TO FIND CENTER OF MASS OF A CELL 
+   %A=M; %uncomment this line if you want to find the center of mass of
+   %myosin distribution 
    run('/Users/eesh/centerofmass_spn/centerofmass_cell');
 
+   A=A_hold;
 %%
     plot(COM_X, COM_Y, 'rx');
     h = fill(tx,ty,'r');
@@ -55,7 +59,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
     %%DO NOT FORGET TO HOLD ON
    
     %%RADIAL INTENSITY DISTRIBUTION FOR ROK
-    run('/Users/eesh/centerofmass_spn/radial_distribution.m');
+    %run('/Users/eesh/centerofmass_spn/radial_distribution.m');
     
     %%THIS PLOTS THE CELL NUMBER ONTO THE CELL
   text( cell(cell_index).COM_X, cell(cell_index).COM_Y, [num2str(cell_index)],'Color', 'g');   
