@@ -26,6 +26,7 @@ COM=zeros(cell_number,2);
 %nox_vertices;
 
 A=imread('RokProj_z008_c001.tif'); 
+A_hold=A;
 M=imread('MyosinProj_z008_c003.tif'); 
 C=imread('CellsProj_z008_c003.tif'); 
 imshow(A);
@@ -38,7 +39,7 @@ hold on;
 rok=1;
 
 COM_threshold = cell(cell_number,2,7);   %for thresholding, holding com for different thresholds
-A_hold=A;
+
 threshold=0.80 ;
 
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
@@ -111,8 +112,8 @@ cell_myosin=cell;
 k = waitforbuttonpress ;
     hold off;
     
-    start_cell=91;
-    end_cell=100;
+    start_cell=21;
+    end_cell=30;
     
      %%MYOSIN PLOT
  cell=cell_myosin;
