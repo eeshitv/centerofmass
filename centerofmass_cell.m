@@ -79,7 +79,8 @@ cell(cell_index).ANS=uint8(cell(cell_index).ANS); %we can now use this to plot w
     COM_Y=COM_Y/SUM_Y;
 
     
-    %%TRYING THE CENTROID OF 15% MAXIMA
+    %%TRYING THE CENTROID OF 15% MAXIMA, AFTER TESTING, I CONCLUDE THAT MY
+    %%METHOD WORKS BETTER
     if 0
     QWERT=regionprops(BW, 'Centroid');
     COM_X=QWERT.Centroid(1);

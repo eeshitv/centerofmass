@@ -1,233 +1,97 @@
  %%RADIAL INTENSITY FOR THE ROK
     %%NOW THE UNIT VECTOR PART BEGINS
-    
+ 
     %%+0
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y 0 1];
-     intersect=intersectLinePolygon(line, t_poly);
-     if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
-     %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-    y=[cell(cell_index).COM_Y intersect(1,2)];
-         C1=improfile(A,x,y);
-     
+    run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+    C1=C_temp;  
+       
+         
+         
+         
+         
      %%+45
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y 1 1];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
-      %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-    y=[cell(cell_index).COM_Y intersect(1,2)];
-         C2=improfile(A,x,y);
+    run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+    C2=C_temp;       
+         
+         
      
          %%+90
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y 1 0];
-     intersect=intersectLinePolygon(line, t_poly);
-        if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
-      %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-    y=[cell(cell_index).COM_Y intersect(1,2)];
-         C3=improfile(A,x,y);
-     
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C3=C_temp;
+
+      
+      
          %%+-45
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y 1 -1];
-     intersect=intersectLinePolygon(line, t_poly);
-      if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C4=improfile(A,x,y);
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C4=C_temp;
          
          %%+22.5+45
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/8) cos(pi/8)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C5=improfile(A,x,y);
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+       C5=C_temp;
          
          %%22.5
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/8) sin(pi/8)];
-     intersect=intersectLinePolygon(line, t_poly);
-      if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C6=improfile(A,x,y);
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C6=C_temp;
          
          %%-22.5
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/8) -sin(pi/8)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C7=improfile(A,x,y);
+      run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C7=C_temp;
          
       %%-22.5-45
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/8) -cos(pi/8)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C8=improfile(A,x,y);
+      run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C8=C_temp;
          
          
          
 
      %%+60
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/6) cos(pi/6)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C9=improfile(A,x,y);
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C9=C_temp;
          
          %%30
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/6) sin(pi/6)];
-     intersect=intersectLinePolygon(line, t_poly);
-      if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C10=improfile(A,x,y);
+    run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C10=C_temp;
          
          %%-30
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/6) -sin(pi/6)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C11=improfile(A,x,y);
+      run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C11=C_temp;
          
       %%-60
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/6) -cos(pi/6)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C12=improfile(A,x,y);
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C12=C_temp;
          
          
          %%+60+15
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/12) cos(pi/12)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C13=improfile(A,x,y);
+     run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C13=C_temp;
          
          %%15
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/12) sin(pi/12)];
-     intersect=intersectLinePolygon(line, t_poly);
-      if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C14=improfile(A,x,y);
+      run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C14=C_temp;
          
          %%-15
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y cos(pi/12) -sin(pi/12)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C15=improfile(A,x,y);
+      run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C15=C_temp;
          
       %%180-15
     line=[cell(cell_index).COM_X cell(cell_index).COM_Y sin(pi/12) -cos(pi/12)];
-     intersect=intersectLinePolygon(line, t_poly);
-       if(rok),
-           h = fill([cell(cell_index).COM_X intersect(1,1)],[cell(cell_index).COM_Y intersect(1,2)],'r');
-           set(h,'FaceColor','None');
-           h = fill([cell(cell_index).COM_X intersect(2,1)],[cell(cell_index).COM_Y intersect(2,2)],'r');
-           set(h,'FaceColor','None');
-     end
- %NOW TO SAVE THE INTENSITIES IN A MATRIX
-     x=[cell(cell_index).COM_X intersect(1,1)];
-     y=[cell(cell_index).COM_Y intersect(1,2)];
-         C16=improfile(A,x,y);
+      run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         C16=C_temp;
          
   
   
@@ -260,3 +124,4 @@
     cell(cell_index).mean = mean_C;
     cell(cell_index).C = C;
     cell(cell_index).stdev = stdev_C;
+    cell(cell_index).MAX=MAX;
