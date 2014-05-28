@@ -4,9 +4,12 @@
   angles={[0 1] [1 1] [ 1 0] [1 -1] [sin(pi/8) cos(pi/8)] [cos(pi/8) sin(pi/8)] [cos(pi/8) -sin(pi/8)] [sin(pi/8) -cos(pi/8)] [sin(pi/6) cos(pi/6)] [cos(pi/6) sin(pi/6)] [cos(pi/6) -sin(pi/6)] [sin(pi/6) -cos(pi/6)] [sin(pi/12) cos(pi/12)] [cos(pi/12) sin(pi/12)] [cos(pi/12) -sin(pi/12)] [sin(pi/12) -cos(pi/12)]};       
   for q=1:16,
          line=[cell(cell_index).COM_X cell(cell_index).COM_Y angles{q}(1) -angles{q}(2)];
-         run('/Users/eesh/centerofmass_spn/script_radialmax_distance1.m');
+         quadrant=1;
+         run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
          TEMP(q).C=C_temp;
-         run('/Users/eesh/centerofmass_spn/script_radialmax_distance2.m');
+        
+         quadrant=0;
+         run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
          TEMP(q+16).C=C_temp;
          
   end
@@ -44,4 +47,7 @@
     cell(cell_index).C = C;
     cell(cell_index).stdev = stdev_C;
     cell(cell_index).MAX=MAX;
+    
+   
+  
    
