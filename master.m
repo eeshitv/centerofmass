@@ -59,7 +59,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
     %%DO NOT FORGET TO HOLD ON
    
     %%RADIAL INTENSITY DISTRIBUTION FOR ROK
-    MAX=[];
+    
     run('/Users/eesh/centerofmass_spn/radial_distribution.m');
     
     %%THIS PLOTS THE CELL NUMBER ONTO THE CELL
@@ -94,7 +94,7 @@ end
 
    t_poly;
    
-  MAX=[];%%THis variable makes the maximum intensity matrix 0 
+ 
   run('/Users/eesh/centerofmass_spn/radial_distribution.m');
     
 end
