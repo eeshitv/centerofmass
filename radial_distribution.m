@@ -24,7 +24,7 @@
   end
  max_index=max(LOL);
    
-    %%PADDING NaNs for finding average easily
+    %%PADDING NaNs to make it easy to find the average 
     C=[];
      for q=1:32,
          TEMP(q).C = vertcat(TEMP(q).C ,NaN(max_index-size(TEMP(q).C ,1),1));
@@ -32,10 +32,7 @@
      end
 
 
-  
-     %%HERE NOTICE THAT SYMETTRY ALLOWS US TO ASSUME THAT THE SIZES OF C_1
-     %%and C_2 have to be the same
-     
+
 
     %USE NaN instead of zeros
      
@@ -48,6 +45,5 @@
     cell(cell_index).stdev = stdev_C;
     cell(cell_index).MAX=MAX;
     
-   
-  
-   
+
+

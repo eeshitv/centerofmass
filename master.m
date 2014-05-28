@@ -4,11 +4,14 @@
 %%center of mass is to be found. 
 
 %% The algorithm first finds the point of maximmum intensity for each cell and then normalizes the intensity of each of the pixel in the cell by dividing each pixel value with the value of the maximum intensity of a pixel in the cell(now each value lies between zero and one). Then it applies a filter that filters out the pixels with intensities less than a certain threshold(15%) and then it finds the weighted centre of mass(centre of intensity) of each of the cells. THis is the Rok Focus of the cells
-
-%%
 clear all;
+%%
+
+
 res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn
 
+load('wildtype.mat');
+cell_wildtype=cell;
 %%Loading the data
 load('/Users/eesh/centerofmass_spn/Membranes--vertices--Vertex-x.mat');
 datax=data;
@@ -38,7 +41,7 @@ M=double(M);
 hold on;
 rok=1;
 
-COM_threshold = cell(cell_number,2,7);   %for thresholding, holding com for different thresholds
+  %for thresholding, holding com for different thresholds
 
 threshold=0.80 ;
 
