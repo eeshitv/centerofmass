@@ -1,4 +1,6 @@
-   max_size=0;
+
+
+max_size=0;
 for cell_index=1:cell_number,
   
     if(max_size<=size(cell(cell_index).mean)),
@@ -21,12 +23,38 @@ end
     average_C = nanmean(C,2);
     stdev_C = nanstd(C',1);
 
+    if(wild)
+        subplot(2,1,1) 
     if(rok),
    
  shadedErrorBar(1:size( average_C',2), average_C',stdev_C,'g');
+ axis([0,30,0,180]);
+  hold on
     end
     
       if(~rok),
- figure 
+ 
  shadedErrorBar(1:size( average_C',2), average_C',stdev_C,'r');
+ axis([0,30,0,180]);
+ hold on
+      end
     end
+    
+    
+     if(~wild)
+        subplot(2,1,2) 
+    if(rok),
+   
+ shadedErrorBar(1:size( average_C',2), average_C',stdev_C,'g');
+ axis([0,30,0,180]);
+  hold on
+    end
+    
+      if(~rok),
+ 
+ shadedErrorBar(1:size( average_C',2), average_C',stdev_C,'r');
+ axis([0,30,0,180]);
+  hold on
+      end
+    end
+    

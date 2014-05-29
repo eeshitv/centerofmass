@@ -134,13 +134,32 @@ k = waitforbuttonpress ;
 
 k = waitforbuttonpress ;
     hold off;
-    
+%%   
+wild=1
+load('wildtype.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;
-    
+   
  run('/Users/eesh/centerofmass_spn/averageovercells.m');
- hold on
+ 
+%%PLOT FOR ROK AVERAGE OVER CELLS 
+ cell=cell_rok;
+rok=1;
+
+ run('/Users/eesh/centerofmass_spn/averageovercells.m'); 
+ 
+
+ %%THIS IS FOR SPN(average thing
+ 
+ wild=0;
+ load('spn.mat')
+%%PLOT FOR MYOSIN AVERAGE IVER CELLS 
+ cell=cell_myosin;
+    rok=0;
+  subplot(2,1,2)   
+ run('/Users/eesh/centerofmass_spn/averageovercells.m');
+ 
  
 %%PLOT FOR ROK AVERAGE OVER CELLS 
  cell=cell_rok;
