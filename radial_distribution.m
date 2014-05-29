@@ -5,11 +5,11 @@
   for q=1:16,
          line=[cell(cell_index).COM_X cell(cell_index).COM_Y angles{q}(1) -angles{q}(2)];
          quadrant=1;
-         run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         run('/Users/eesh/eesh_summer_14/centerofmass_spn/script_radialmax_distance.m');
          TEMP(q).C=C_temp;
         
          quadrant=0;
-         run('/Users/eesh/centerofmass_spn/script_radialmax_distance.m');
+         run('/Users/eesh/eesh_summer_14/centerofmass_spn/script_radialmax_distance.m');
          TEMP(q+16).C=C_temp;
          
   end
